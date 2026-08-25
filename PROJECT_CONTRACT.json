@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "metrics": {
-    "production_loc": 2318,
+    "production_loc": 2319,
     "production_files": 35,
     "production_packages": 7,
     "test_files": 9,

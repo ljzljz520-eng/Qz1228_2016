@@ -15,6 +15,8 @@ type ProcessRequest struct {
 	Delay           time.Duration
 }
 
+const CancellationPropagationMechanismID = "cancel-signal-not-propagated-v1"
+
 func (s *Service) ProcessRecord(ctx context.Context, req ProcessRequest) (domain.Record, error) {
 	if err := s.requireStore(); err != nil {
 		return domain.Record{}, err
