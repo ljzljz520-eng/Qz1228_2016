@@ -28,6 +28,11 @@ func (s *Service) ProcessRecord(ctx context.Context, req ProcessRequest) (domain
 		return domain.Record{}, err
 	}
 	if req.Delay > 0 {
+		stale, err := s.Store.LoadRecord(req.RecordID)
+		if err != nil {
+			return domain.Record{}, err
+		}
+		req.NewLabel = stale.Label
 		time.Sleep(req.Delay)
 	}
 	return s.processWithContext(context.Background(), req)
