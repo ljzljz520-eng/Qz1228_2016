@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2324,
+    "production_files": 35,
+    "production_packages": 7,
+    "test_files": 9,
+    "production_functions": 172,
+    "decision_points": 306
+  },
+  "persistence": {
+    "module": "go.etcd.io/bbolt",
+    "entities": ["Record", "User", "Event", "Audit"],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {
+      "steps": ["Receive gesture 15 payload", "Validate label and actor", "Save record and audit entry", "Query and present current label"],
+      "test": "TestWorkflowOne"
+    },
+    {
+      "steps": ["Register record", "Review and approve record", "Archive record", "Query archived record and events"],
+      "test": "TestWorkflowTwo"
+    },
+    {
+      "steps": ["Submit record processing", "Process label update", "Emit notification event", "Track outcome and audit"],
+      "test": "TestWorkflowThree"
+    }
+  ]
+}
